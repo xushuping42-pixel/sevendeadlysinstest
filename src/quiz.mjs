@@ -26,10 +26,10 @@ function render(focus=false){
  app.querySelectorAll('input[name="answer"]').forEach(input=>input.addEventListener('change',()=>{
   attempt.answers[attempt.index]=Number(input.value);persist();updateProgress();app.querySelector('[data-next]').disabled=false;
  }));
- app.querySelector('[data-back]').addEventListener('click',()=>{if(attempt.index>0){attempt.index--;persist();resumed=false;render(true);}});
+ app.querySelector('[data-back]').addEventListener('click',()=>{if(attempt.index>0){attempt.index--;persist();render(true);}});
  app.querySelector('[data-next]').addEventListener('click',()=>{
   if(attempt.answers[attempt.index]===null)return;
-  if(attempt.index<20){attempt.index++;persist();resumed=false;render(true);return;}
+  if(attempt.index<20){attempt.index++;persist();render(true);return;}
   try{
    const scores=scoreAnswers(attempt.answers);
    try{sessionStorage.setItem(RESULT_KEY,JSON.stringify({version:1,scores}));}catch{}
@@ -39,6 +39,6 @@ function render(focus=false){
  app.querySelector('[data-restart]').addEventListener('click',()=>{app.querySelector('.restart-confirm').hidden=false;app.querySelector('[data-confirm-restart]').focus();});
  app.querySelector('[data-cancel-restart]').addEventListener('click',()=>{app.querySelector('.restart-confirm').hidden=true;app.querySelector('[data-restart]').focus();});
  app.querySelector('[data-confirm-restart]').addEventListener('click',()=>{attempt=emptyAttempt();resumed=false;persist();render(true);});
- if(focus){app.querySelector('#question-title').focus({preventScroll:true});app.scrollIntoView({behavior:'instant',block:'start'});}
+ if(focus)app.querySelector('#question-title').focus({preventScroll:true});
 }
 render();

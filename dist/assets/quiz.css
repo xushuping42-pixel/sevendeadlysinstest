@@ -7,3 +7,7 @@
 @media(max-width:800px){.home-quiz{width:calc(100% - 40px);padding-block:50px}.quiz-section-heading h2{font-size:42px}.home-quiz .quiz-card{padding:30px}.home-quiz .answer-options{gap:8px}.home-quiz .answer-option>span:last-child{font-size:12px}}
 @media(max-width:560px){.home-quiz{width:calc(100% - 36px);padding-block:43px 45px}.quiz-section-heading{margin-bottom:26px}.quiz-section-heading h2{font-size:37px;letter-spacing:-1.8px}.quiz-section-heading .quiz-intro{font-size:15px}.quiz-section-heading .eyebrow{font-size:9px;letter-spacing:1.2px}.home-quiz .quiz-card{padding:25px 19px}.home-quiz .quiz-card h3{font-size:28px}.home-quiz .answer-option>span:last-child{font-size:14px}.home-quiz-footnote{font-size:12px}.home-quiz .quiz-progress-head{font-size:12px}.home-quiz .quiz-under{font-size:12px}}
 @media(max-width:359px){.home-quiz{width:calc(100% - 28px)}.quiz-section-heading h2{font-size:33px}.home-quiz .quiz-card h3{font-size:26px}.home-quiz .quiz-card{padding-inline:16px}}
+
+/* Keep the question, answer controls and following sections steady between questions. */
+.home-quiz .quiz-card h3{min-height:2.4em}.home-quiz .quiz-statement{min-height:3.2em}
+@media(max-width:560px){.home-quiz .quiz-card h3{min-height:3.6em}.home-quiz .quiz-statement{min-height:6.4em}}
