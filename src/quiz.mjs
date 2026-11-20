@@ -39,6 +39,9 @@ function render(focus=false){
  app.querySelector('[data-restart]').addEventListener('click',()=>{app.querySelector('.restart-confirm').hidden=false;app.querySelector('[data-confirm-restart]').focus();});
  app.querySelector('[data-cancel-restart]').addEventListener('click',()=>{app.querySelector('.restart-confirm').hidden=true;app.querySelector('[data-restart]').focus();});
  app.querySelector('[data-confirm-restart]').addEventListener('click',()=>{attempt=emptyAttempt();resumed=false;persist();render(true);});
- if(focus)app.querySelector('#question-title').focus({preventScroll:true});
+ if(focus){
+  app.querySelector('#question-title').focus({preventScroll:true});
+  if(matchMedia('(max-width:560px)').matches)app.scrollIntoView({behavior:'instant',block:'start'});
+ }
 }
 render();
