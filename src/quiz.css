@@ -11,3 +11,40 @@
 /* Keep the question, answer controls and following sections steady between questions. */
 .home-quiz .quiz-card h3{min-height:2.4em}.home-quiz .quiz-statement{min-height:3.2em}
 @media(max-width:560px){.home-quiz .quiz-card h3{min-height:3.6em}.home-quiz .quiz-statement{min-height:6.4em}}
+
+/* Larger text within the home quiz only. */
+.home-quiz{font-size:1.125rem}
+.home-quiz .quiz-section-heading .eyebrow{font-size:.8125rem}
+.home-quiz .quiz-section-heading h2{font-size:3rem}
+.home-quiz .quiz-section-heading .quiz-intro{font-size:1.125rem}
+.home-quiz .quiz-progress-head{font-size:.875rem}
+.home-quiz .quiz-card .eyebrow{font-size:.75rem}
+.home-quiz .quiz-card h3{font-size:2.25rem}
+.home-quiz .quiz-statement{font-size:1.3125rem}
+.home-quiz .answer-fieldset legend{font-size:1rem}
+.home-quiz .answer-option>span:first-of-type{font-size:1.75rem}
+.home-quiz .answer-option>span:last-child{font-size:.9375rem}
+.home-quiz .quiz-controls .button{font-size:1.125rem}
+.home-quiz .quiet-button,.home-quiz .resume-notice,.home-quiz .restart-area{font-size:1rem}
+.home-quiz .quiz-helper,.home-quiz .quiz-under,.home-quiz .home-quiz-footnote{font-size:.9375rem}
+@media(max-width:800px){
+ .home-quiz .quiz-section-heading h2{font-size:2.75rem}
+ .home-quiz .answer-option>span:last-child{font-size:.875rem}
+}
+@media(max-width:560px){
+ .home-quiz .quiz-section-heading h2{font-size:2.4375rem}
+ .home-quiz .quiz-section-heading .eyebrow{font-size:.6875rem}
+ .home-quiz .quiz-section-heading .quiz-intro{font-size:1.0625rem}
+ .home-quiz .quiz-card h3{font-size:1.875rem}
+ .home-quiz .quiz-statement{font-size:1.1875rem}
+ .home-quiz .answer-option>span:first-of-type{font-size:1.4375rem}
+ .home-quiz .answer-option>span:last-child{font-size:1rem}
+ .home-quiz .quiz-controls .button,.home-quiz .quiz-controls .quiet-button{font-size:.9375rem}
+ .home-quiz .quiz-under,.home-quiz .home-quiz-footnote{font-size:.875rem}
+}
+@media(max-width:359px){
+ .home-quiz .quiz-section-heading h2{font-size:2.1875rem}
+ .home-quiz .quiz-card h3{font-size:1.75rem}
+ .home-quiz .quiz-statement{font-size:1.125rem}
+ .home-quiz .quiz-controls .button,.home-quiz .quiz-controls .quiet-button{font-size:.875rem}
+}
