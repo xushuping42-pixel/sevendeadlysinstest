@@ -30,7 +30,7 @@ test('production loads one tag, configures one pageview and strips score/referre
  assert.equal(JSON.stringify(commands).includes('v1:'),false);
 });
 test('every generated page includes the shared analytics module exactly once',async()=>{
- for(const route of ['dist/index.html','dist/result/index.html']){
+ for(const route of ['dist/index.html','dist/result/index.html',...['pride','greed','lust','envy','gluttony','wrath','sloth'].map(id=>`dist/sins/${id}/index.html`)]){
   const html=await readFile(route,'utf8');assert.equal((html.match(/src="\/assets\/analytics\.mjs"/g)||[]).length,1,route);
  }
 });
