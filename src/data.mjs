@@ -34,8 +34,8 @@ export const questions = [
 ].map(([sin,scene,text,reverse=false],i)=>({id:i+1,sin,scene,text,reverse}));
 
 export function scoreAnswers(answers) {
- if(!Array.isArray(answers)||answers.length!==questions.length||answers.some(v=>!Number.isInteger(v)||v<0||v>4)) throw new Error('Complete all 21 questions before revealing a result.');
+ if(!Array.isArray(answers)||answers.length!==questions.length||!Array.from(answers).every(v=>Number.isInteger(v)&&v>=0&&v<=4)) throw new Error('Complete all 21 questions before revealing a result.');
  return sins.map(s=>Math.round(questions.reduce((total,q,i)=>total+(q.sin===s.id?(q.reverse?4-answers[i]:answers[i]):0),0)/12*100));
 }
-export function leaders(scores) {const max=Math.max(...scores);return sins.filter((_,i)=>scores[i]===max);}
-export function validScores(values){return Array.isArray(values)&&values.length===7&&values.every(v=>Number.isInteger(v)&&v>=0&&v<=100);}
+export function leaders(scores) {if(!validScores(scores))throw new Error('Invalid scores');const max=Math.max(...scores);return sins.filter((_,i)=>scores[i]===max);}
+export function validScores(values){return Array.isArray(values)&&values.length===7&&Array.from(values).every(v=>Number.isInteger(v)&&v>=0&&v<=100);}
