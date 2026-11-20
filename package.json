@@ -1,0 +1,6 @@
+{
+  "name": "seven-little-sins",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node tools/build.mjs", "dev": "node tools/serve.mjs" }
+}
