@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile,access} from 'node:fs/promises';
 import {sins} from '../src/data.mjs';
+import {createHash} from 'node:crypto';
 test('the complete quiz is mounted between the ribbon and the character lineup',async()=>{
  const html=await readFile('dist/index.html','utf8');
  assert.equal((html.match(/id="quiz-app"/g)||[]).length,1);
@@ -61,6 +62,24 @@ test('guide local links, fragment targets, and assets resolve in the built site'
    const file='dist'+url.pathname+(url.pathname.endsWith('/')?'index.html':'');
    await access(file);
    if(url.hash){const target=await readFile(file,'utf8');assert.ok(target.includes(`id="${url.hash.slice(1)}"`),`${route}: missing ${href}`);}
+  }
+ }
+});
+
+test('all pages request content-versioned stylesheets instead of stale cached CSS URLs',async()=>{
+ const styles=['style.css','homepage.css','quiz.css','sin-guide.css'];
+ const versions=new Map(await Promise.all(styles.map(async name=>[
+  name,createHash('sha256').update(await readFile('src/'+name)).digest('hex').slice(0,12),
+ ])));
+ for(const file of ['dist/index.html','dist/result/index.html',...sins.map(s=>`dist/sins/${s.id}/index.html`)]){
+  const html=await readFile(file,'utf8');
+  const links=[...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map(match=>match[1]);
+  assert.equal(links.length,file.includes('/sins/')?4:3);
+  for(const link of links){
+   const url=new URL(link,'https://sevendeadlysinstest.xyz');
+   const name=url.pathname.split('/').at(-1);
+   assert.equal(url.searchParams.get('v'),versions.get(name),`${file}: stale URL for ${name}`);
+   assert.deepEqual(await readFile('dist'+url.pathname),await readFile('src/'+name));
   }
  }
 });

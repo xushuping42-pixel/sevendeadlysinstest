@@ -10,6 +10,8 @@ No dependencies are required. Build with `node tools/build.mjs`, run `node --tes
 
 Source: `src/`. Homepage generator: `tools/build.mjs`. Guide content and templates: `tools/sin-pages.mjs`. Guide styles: `src/sin-guide.css`. Browser-ready output: `dist/`.
 
+The build adds a content hash to each stylesheet URL on every page. A CSS change therefore requests a new URL instead of reusing a browser's still-fresh cached stylesheet; unchanged styles retain their URLs.
+
 The sitemap includes the home page and all seven character guides. Legacy `/quiz` and `/quiz/` URLs redirect permanently to `/#quiz`; the local server and `dist/_redirects` implement this for local preview and hosts that support `_redirects` (including Cloudflare Pages). Personal results are marked `noindex,follow` and are excluded from the sitemap. The root canonical is `https://sevendeadlysinstest.xyz` without a trailing slash.
 
 Deploy `dist/` as the static output. The custom domain has not been configured or deployed by this project. The nested `sevendeadlysinstest/` directory, when present, is the user's separate GitHub Desktop checkout; its `.git` directory must be preserved.

@@ -1,10 +1,22 @@
-import {mkdir,writeFile,copyFile,readdir,rm} from 'node:fs/promises';
+import {mkdir,writeFile,copyFile,readdir,rm,readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {sins} from '../src/data.mjs';
 import {monster} from '../src/monsters.mjs';
 import {quizSection,resultPage} from './function-pages.mjs';
 import {sinPages} from './sin-pages.mjs';
 const origin='https://sevendeadlysinstest.xyz';
+// A changed stylesheet must get a new URL even while a browser's old CSS is fresh.
+const stylesheetVersions=Object.fromEntries(await Promise.all(
+ ['style.css','homepage.css','quiz.css','sin-guide.css'].map(async name=>
+  [name,createHash('sha256').update(await readFile('src/'+name)).digest('hex').slice(0,12)]),
+));
+function versionStylesheets(html){
+ return html.replace(/href="\/assets\/([^"?]+\.css)"/g,(_match,name)=>{
+  if(!stylesheetVersions[name])throw new Error('Missing stylesheet version: '+name);
+  return `href="/assets/${name}?v=${stylesheetVersions[name]}"`;
+ });
+}
 const esc=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 const button=(text='Reveal my sin',cls='')=>`<a class="button ${cls}" href="/#quiz">${text} <span aria-hidden="true">✦</span></a>`;
 const header=()=>`<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="wrap header-inner"><a href="/" class="brand" aria-label="Seven Little Sins home"><span class="brand-icon">${monster('pride')}</span><span>seven little sins<span class="brand-sub">A VERY HUMAN PERSONALITY QUIZ</span></span></a><button type="button" class="menu-toggle" aria-controls="main-navigation" aria-expanded="false" aria-label="Toggle navigation">☰</button><nav id="main-navigation" aria-label="Main navigation"><a href="/#meet">Meet the seven</a><a href="/#how-it-works">How it works</a><a class="nav-quiz" href="/#quiz">Take the test <span>✳</span></a></nav></div></header>`;
@@ -29,7 +41,7 @@ const oldQuizDirectory=path.resolve(outputRoot,'quiz');
 if(oldQuizDirectory!==path.join(outputRoot,'quiz')||!oldQuizDirectory.startsWith(outputRoot+path.sep))throw new Error('Unsafe obsolete quiz path');
 await rm(oldQuizDirectory,{recursive:true,force:true});
 await writeFile('dist/_redirects','/quiz/ /#quiz 301\n/quiz /#quiz 301\n','utf8');
-for(const route of [page,resultPage,...sinPages]){await mkdir('dist'+route.path,{recursive:true});await writeFile('dist'+route.path+'index.html',shell(route));}
+for(const route of [page,resultPage,...sinPages]){await mkdir('dist'+route.path,{recursive:true});await writeFile('dist'+route.path+'index.html',versionStylesheets(shell(route)));}
 for(const name of ['analytics.mjs','app.mjs','interactions.mjs','data.mjs','monsters.mjs','state.mjs','quiz.mjs','result.mjs','share-card.mjs','style.css','homepage.css','quiz.css','sin-guide.css'])await copyFile('src/'+name,'dist/assets/'+name);
 await copyFile('src/icons/favicon.ico','dist/favicon.ico');
 for(const name of await readdir('src/icons')){
