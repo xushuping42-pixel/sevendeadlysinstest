@@ -1,5 +1,5 @@
 // GA4 web-stream Measurement ID for sevendeadlysinstest.xyz.
-export const GA4_MEASUREMENT_ID='G-VTP5P4SE9E';
+export const GA4_MEASUREMENT_ID='G-774WEVP8GG';
 const productionHosts=new Set(['sevendeadlysinstest.xyz','www.sevendeadlysinstest.xyz']);
 const campaignParameters=['utm_source','utm_medium','utm_campaign','utm_id','utm_term','utm_content','gclid','gbraid','wbraid'];
 
