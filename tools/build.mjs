@@ -9,7 +9,7 @@ const origin='https://sevendeadlysinstest.xyz';
 // A changed stylesheet must get a new URL even while a browser's old CSS is fresh.
 const stylesheetVersions=Object.fromEntries(await Promise.all(
  ['style.css','homepage.css','quiz.css','sin-guide.css'].map(async name=>
-  [name,createHash('sha256').update(await readFile('src/'+name)).digest('hex').slice(0,12)]),
+  [name,createHash('sha256').update((await readFile('src/'+name,'utf8')).replace(/\r\n/g,'\n')).digest('hex').slice(0,12)]),
 ));
 function versionStylesheets(html){
  return html.replace(/href="\/assets\/([^"?]+\.css)"/g,(_match,name)=>{

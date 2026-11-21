@@ -69,7 +69,7 @@ test('guide local links, fragment targets, and assets resolve in the built site'
 test('all pages request content-versioned stylesheets instead of stale cached CSS URLs',async()=>{
  const styles=['style.css','homepage.css','quiz.css','sin-guide.css'];
  const versions=new Map(await Promise.all(styles.map(async name=>[
-  name,createHash('sha256').update(await readFile('src/'+name)).digest('hex').slice(0,12),
+  name,createHash('sha256').update((await readFile('src/'+name,'utf8')).replace(/\r\n/g,'\n')).digest('hex').slice(0,12),
  ])));
  for(const file of ['dist/index.html','dist/result/index.html',...sins.map(s=>`dist/sins/${s.id}/index.html`)]){
   const html=await readFile(file,'utf8');
