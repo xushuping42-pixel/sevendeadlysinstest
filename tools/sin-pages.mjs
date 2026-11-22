@@ -5,7 +5,7 @@ import {monster} from '../src/monsters.mjs';
 const readings={
  pride:{
   headline:'When confidence wants an audience.',
-  description:'Explore pride in everyday life: recognition, defensiveness, confidence, and what a high pride score means in our Seven Deadly Sins Test.',
+  description:'Explore pride in everyday life: recognition, defensiveness, confidence, and what a high pride score means in our original Seven Deadly Sins Test.',
   meaning:'In our quiz, pride is the pull to protect an impressive image of yourself. Doing good work matters, but being seen doing good work can start to matter just as much. The little troublemaker appears when recognition feels necessary, or a correction feels like a threat to your whole identity.',
   scenes:[['The shared success','A project goes well. Before enjoying the outcome, you scan the thank-you message to see whether your contribution made the list.'],['The helpful suggestion','Someone offers a simpler approach. You spend the next few minutes explaining why your original plan was reasonable, even though you would rather use theirs.'],['The small correction','You know you mixed up a detail, but admitting it in front of the group feels much bigger than the mistake itself.']],
   distinction:['Pride and confidence','Confidence can make room for “I don’t know yet.” The pattern explored here is the urge to keep looking capable, even when asking a question or sharing credit would help. Enjoying an achievement does not automatically fit that pattern.'],
@@ -17,7 +17,7 @@ const readings={
  },
  greed:{
   headline:'When enough keeps moving.',
-  description:'Explore greed, the moving finish line, and the difference between wanting more and planning ahead. Understand your greed score in our quiz.',
+  description:'Explore greed, the moving finish line, and the difference between wanting more and planning ahead. Understand your greed score in our free quiz.',
   meaning:'In our quiz, greed follows the little voice that says one more thing will finally be enough. It might be an upgrade, an opportunity, a possession, or a reserve you never quite feel ready to use. The useful question is what happens after a need has been met: can you enjoy it, or does the finish line immediately move?',
   scenes:[['The unnecessary bargain','You already have what you need, but a limited-time offer makes passing up the extra value feel like losing something.'],['The next milestone','You reach the target you set. Instead of pausing to enjoy it, you immediately raise the number that would count as success.'],['The someday cupboard','You keep a useful item you have not touched in years because giving it away would mean losing a possible future advantage.']],
   distinction:['Greed and reasonable security','Saving for a real need, negotiating fair pay, and enjoying nice things are not automatically greed. This quiz explores attachment to getting or keeping more. The amount someone owns does not tell you whether these statements fit their experience.'],
@@ -94,7 +94,7 @@ export const sinPages=sins.map(s=>{
  const r=readings[s.id],route=`/sins/${s.id}/`;
  const contents=[['meaning','The meaning'],['everyday','Everyday moments'],['difference','A useful distinction'],['score','Reading your score'],['balance','A little balance'],['questions','Good questions']];
  return {
-  path:route,view:'sin',title:`${s.name}: Meaning, Everyday Examples & Test Results | Seven Little Sins`,description:r.description,
+  path:route,view:'sin',title:`${s.name}: Meaning, Everyday Examples & Test Results`,description:r.description,
   content:`<article class="sin-guide" style="--sin-color:${s.color}">
    <div class="wrap"><nav class="sin-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/seven-deadly-sins/">The seven characters</a><span aria-hidden="true">/</span><span aria-current="page">${s.name}</span></nav>
    <header class="sin-hero"><div class="sin-hero-copy"><p class="eyebrow">A FIELD GUIDE TO YOUR LITTLE TROUBLEMAKER</p><h1>${s.name}<span>.</span></h1><p class="sin-deck">${r.headline}</p><p class="sin-intro">${s.intro}</p><a class="button" href="/#quiz">Discover your seven-sin profile <span aria-hidden="true">✦</span></a><p class="sin-fine">21 questions · 3–5 minutes · Free, no signup</p></div>
