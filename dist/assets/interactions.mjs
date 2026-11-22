@@ -29,12 +29,6 @@ document.addEventListener('click',event=>{
  if(character){const sin=sins.find(s=>s.id===character.dataset.character);if(sin){event.preventDefault();showCharacter(sin,false,character);}return;}
  const preview=event.target.closest('[data-preview]');
  if(preview){event.preventDefault();showCharacter(sins[6],true,preview);return;}
- const privacy=event.target.closest('[data-privacy]');
- if(privacy){
-  event.preventDefault();
-  openDialog(`<div class="privacy-dialog"><span class="eyebrow">A LITTLE TRANSPARENCY</span><h2 id="dialog-heading">Your privacy.</h2><p id="dialog-description">Quiz answers are scored in your browser. We do not submit your answers or scores to a quiz server.</p><h3>Saved in this tab.</h3><p>Your progress and latest result are saved in session storage, so refreshing does not erase an unfinished attempt. Start over to clear that attempt. Closing the tab clears this storage. If storage is unavailable, the quiz still works, but progress may be lost on refresh.</p><h3>Sharing is your choice.</h3><p>A result link contains all seven scores in its URL fragment, after #. Anyone with the link can view them; this is not encryption. URL fragments are not normally sent to the hosting server. Downloaded PNG cards show your leading characters without the score chart. Cards are generated on your device.</p><h3>Ordinary website requests.</h3><p>When enabled, Google Analytics 4 measures page visits and engagement using cookies. We do not send quiz answers, scores, or result-link fragments to Analytics. Advertising personalization and Google signals are disabled. This site has no accounts or email forms. <a href="https://policies.google.com/privacy">Google’s privacy policy</a> explains how Google processes analytics data. Hosting services process ordinary request information such as IP addresses, paths, and browser headers to deliver the site.</p><button type="button" class="button" data-close-dialog>Got it <span aria-hidden="true">✦</span></button></div>`,privacy);
-  return;
- }
  const scoring=event.target.closest('[data-scoring]'),item=document.querySelector('#score-faq');
  if(scoring&&item){event.preventDefault();item.open=true;item.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth',block:'center'});item.querySelector('summary').focus({preventScroll:true});}
 });

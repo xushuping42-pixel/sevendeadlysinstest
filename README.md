@@ -2,7 +2,7 @@
 
 An original, responsive personality quiz for `https://sevendeadlysinstest.xyz` with seven illustrated SVG characters.
 
-The site has a home page with the complete 21-question quiz embedded at `/#quiz`, a personal `/result/` page, and seven static character guides at `/sins/pride/`, `/sins/greed/`, `/sins/lust/`, `/sins/envy/`, `/sins/gluttony/`, `/sins/wrath/`, and `/sins/sloth/`. The quiz is placed between the purple ribbon and the character lineup. Homepage lineup cards, character dialogs, and result explanations link to the guides.
+The site has a home page with the complete 21-question quiz embedded at `/#quiz`, a personal `/result/` page, and seven static character guides at `/sins/pride/`, `/sins/greed/`, `/sins/lust/`, `/sins/envy/`, `/sins/gluttony/`, `/sins/wrath/`, and `/sins/sloth/`. Three editorial companions live at `/seven-deadly-sins/`, `/results-guide/`, and `/how-it-works/`. Their content and templates are in `tools/content-pages.mjs`, with styles in `src/content-guide.css`. Project information pages live at `/about/`, `/privacy/`, and `/contact/`; their content and the public contact email are in `tools/site-pages.mjs`. The footer links to all three pages, and Privacy uses a standalone page. The quiz is placed between the purple ribbon and the character lineup. Homepage lineup cards, character dialogs, and result explanations link to the guides.
 
 Quiz answers are scored locally and saved in the current tab's session storage for refresh recovery. Result links contain only seven scores in the URL fragment. Invalid result links show a recovery screen. Equal scores preserve ties, including seven-way ties. There are no external fonts, accounts, or quiz-server requests. GA4 pageview measurement is available on the production domain when a Measurement ID is configured.
 
@@ -12,7 +12,7 @@ Source: `src/`. Homepage generator: `tools/build.mjs`. Guide content and templat
 
 The build adds a content hash to each stylesheet URL on every page. A CSS change therefore requests a new URL instead of reusing a browser's still-fresh cached stylesheet; unchanged styles retain their URLs.
 
-The sitemap includes the home page and all seven character guides. Legacy `/quiz` and `/quiz/` URLs redirect permanently to `/#quiz`; the local server and `dist/_redirects` implement this for local preview and hosts that support `_redirects` (including Cloudflare Pages). Personal results are marked `noindex,follow` and are excluded from the sitemap. The root canonical is `https://sevendeadlysinstest.xyz` without a trailing slash.
+The sitemap includes the home page, all seven character guides, and all three content guides, and three project information pages (14 indexable URLs). Legacy `/quiz` and `/quiz/` URLs redirect permanently to `/#quiz`; the local server and `dist/_redirects` implement this for local preview and hosts that support `_redirects` (including Cloudflare Pages). Personal results are marked `noindex,follow` and are excluded from the sitemap. The root canonical is `https://sevendeadlysinstest.xyz` without a trailing slash.
 
 Deploy `dist/` as the static output. The custom domain has not been configured or deployed by this project. The nested `sevendeadlysinstest/` directory, when present, is the user's separate GitHub Desktop checkout; its `.git` directory must be preserved.
 

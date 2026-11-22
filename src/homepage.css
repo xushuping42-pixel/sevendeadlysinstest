@@ -30,3 +30,8 @@ html{scrollbar-gutter:stable}.dialog-open{overflow:hidden}
 }
 @media(max-width:560px){.sample-layout{grid-template-columns:minmax(0,1fr)}.sample-art,.sample-copy{min-width:0;width:100%}.sample-card{width:min(265px,100%)}.sample-sticker{right:8px}.sample-copy .button{max-width:100%}.check-list{max-width:100%}.faq-heading h2 br{display:block}}
 @media(max-width:359px){.wrap{width:calc(100% - 28px)}.brand{font-size:19px}.brand-icon{width:31px}.brand-sub{font-size:7px}.hero .eyebrow{font-size:7px}.hero-actions{gap:14px}.hero-actions .button{padding-inline:17px}.hero-art{height:325px}.hero-art:before{width:90%;transform:translateX(-50%)}.hc-6{left:73%}.hero-stamp{right:0}.art-note{font-size:11px;left:18%}.card-copy h3{font-size:25px}.card-heading{font-size:7px}.character-name{font-size:11px}.last-call{padding-inline:20px}.faq-heading>.monster{width:65px;height:65px;right:0;top:35px}.faq-heading h2{font-size:40px}.sample-copy h2{font-size:37px}}
+
+.home-guide-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 28px;margin-top:22px}.home-guide-links .text-link{font-size:14px;min-height:44px}
+
+.footer-top>.footer-links{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:flex-end;max-width:440px}
+@media(max-width:560px){.footer-top>.footer-links{justify-content:flex-start;gap:6px 20px;max-width:100%}}
